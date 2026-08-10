@@ -49,11 +49,8 @@ st.set_page_config(
 
 
 # ============================================================
-# THEME TOKENS
+# THEME
 # ============================================================
-# Design language: "heterogeneous graph" — nodes + typed edges.
-# Ink-navy surface, teal edges, amber nodes, coral signal.
-# Display: Space Grotesk · Body: Inter · Data: JetBrains Mono
 
 INK = "#0B1220"
 PANEL = "#131B2E"
@@ -66,279 +63,589 @@ WHITE = "#F8FAFC"
 
 
 # ============================================================
-# CUSTOM STYLING
+# CUSTOM CSS
 # ============================================================
 
 st.markdown(
     f"""
-    <style>
+<style>
 
-    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url(
+    'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700'
+    '&family=Inter:wght@400;500;600'
+    '&family=JetBrains+Mono:wght@400;500;600'
+    '&display=swap'
+);
 
-    :root {{
-        --ink: {INK};
-        --panel: {PANEL};
-        --panel-light: {PANEL_LIGHT};
-        --edge: {EDGE};
-        --node: {NODE};
-        --signal: {SIGNAL};
-        --mist: {MIST};
-        --white: {WHITE};
-        --border: rgba(45, 212, 191, 0.20);
-    }}
 
-    @media (prefers-reduced-motion: reduce) {{
-        * {{ animation: none !important; transition: none !important; }}
-    }}
+/* ============================================================
+   ROOT
+   ============================================================ */
 
-    html, body, .stApp {{
-        background: radial-gradient(120% 140% at 10% 0%, #101a30 0%, var(--ink) 45%) fixed;
-        color: var(--mist);
-        font-family: 'Inter', sans-serif;
-    }}
+:root {{
+    --ink: {INK};
+    --panel: {PANEL};
+    --panel-light: {PANEL_LIGHT};
+    --edge: {EDGE};
+    --node: {NODE};
+    --signal: {SIGNAL};
+    --mist: {MIST};
+    --white: {WHITE};
+    --border: rgba(45, 212, 191, 0.20);
+}}
 
-    h1, h2, h3, h4, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {{
-        font-family: 'Space Grotesk', sans-serif !important;
-        color: var(--white) !important;
-        letter-spacing: -0.01em;
-    }}
 
-    p, li, label, span, div {{
-        font-family: 'Inter', sans-serif;
-    }}
+/* ============================================================
+   APP BACKGROUND
+   ============================================================ */
 
-    .main {{
-        padding-top: 1rem;
-    }}
+html,
+body,
+.stApp {{
+    background:
+        radial-gradient(
+            120% 140% at 10% 0%,
+            #101A30 0%,
+            #0B1220 50%,
+            #080E1A 100%
+        ) fixed !important;
 
-    .block-container {{
-        max-width: 1400px;
-        padding-top: 2rem;
-    }}
+    color: #C9D1D9 !important;
+    font-family: 'Inter', sans-serif !important;
+}}
 
-    /* ---------- Hero ---------- */
 
-    .hero {{
-        position: relative;
-        padding: 2.75rem 2.5rem;
-        border-radius: 20px;
-        margin-bottom: 1.75rem;
-        background:
-            radial-gradient(circle at 8px 8px, rgba(45,212,191,0.35) 1.6px, transparent 1.6px),
-            radial-gradient(circle at 68px 38px, rgba(245,166,35,0.30) 1.6px, transparent 1.6px),
-            radial-gradient(circle at 38px 68px, rgba(45,212,191,0.22) 1.6px, transparent 1.6px),
-            linear-gradient(135deg, #10192E 0%, #0D1526 60%, #0B1220 100%);
-        background-size: 76px 76px, 76px 76px, 76px 76px, cover;
-        border: 1px solid var(--border);
-        overflow: hidden;
-        animation: hero-in 700ms ease-out;
-    }}
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
 
-    .hero::after {{
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(120deg, transparent 40%, rgba(45,212,191,0.06) 55%, transparent 70%);
-        pointer-events: none;
-    }}
+.block-container {{
+    max-width: 1400px !important;
+    padding-top: 1.5rem !important;
+    padding-bottom: 3rem !important;
+}}
 
-    @keyframes hero-in {{
-        from {{ opacity: 0; transform: translateY(6px); }}
-        to {{ opacity: 1; transform: translateY(0); }}
-    }}
 
-    .hero-eyebrow {{
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 0.72rem;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--edge);
-        margin-bottom: 0.6rem;
-    }}
+/* ============================================================
+   REMOVE STREAMLIT TOP GAP
+   ============================================================ */
+
+header[data-testid="stHeader"] {{
+    background: transparent !important;
+}}
+
+
+/* ============================================================
+   GENERAL TEXT
+   ============================================================ */
+
+.stMarkdown p,
+.stMarkdown li {{
+    color: #C9D1D9 !important;
+    opacity: 1 !important;
+}}
+
+h1,
+h2,
+h3,
+h4,
+.stMarkdown h1,
+.stMarkdown h2,
+.stMarkdown h3,
+.stMarkdown h4 {{
+    font-family: 'Space Grotesk', sans-serif !important;
+    color: #F8FAFC !important;
+    opacity: 1 !important;
+}}
+
+
+/* ============================================================
+   HERO CONTAINER
+   ============================================================ */
+
+.hero-container {{
+    position: relative;
+
+    padding: 2.5rem 2.75rem;
+
+    margin-bottom: 2rem;
+
+    border-radius: 22px;
+
+    background:
+        radial-gradient(
+            circle at 8px 8px,
+            rgba(45, 212, 191, 0.32) 1.5px,
+            transparent 1.6px
+        ),
+        radial-gradient(
+            circle at 68px 38px,
+            rgba(245, 166, 35, 0.28) 1.5px,
+            transparent 1.6px
+        ),
+        radial-gradient(
+            circle at 38px 68px,
+            rgba(45, 212, 191, 0.20) 1.5px,
+            transparent 1.6px
+        ),
+        linear-gradient(
+            135deg,
+            #10192E 0%,
+            #0D1729 55%,
+            #0B1220 100%
+        );
+
+    background-size:
+        76px 76px,
+        76px 76px,
+        76px 76px,
+        cover;
+
+    border:
+        1px solid rgba(45, 212, 191, 0.24);
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.18);
+
+    overflow: hidden;
+}}
+
+
+/* ============================================================
+   HERO GLOW
+   ============================================================ */
+
+.hero-container::after {{
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 35%,
+            rgba(45, 212, 191, 0.045) 52%,
+            transparent 68%
+        );
+
+    pointer-events: none;
+}}
+
+
+/* ============================================================
+   HERO EYEBROW
+   ============================================================ */
+
+.hero-eyebrow {{
+    position: relative;
+    z-index: 2;
+
+    font-family: 'JetBrains Mono', monospace !important;
+
+    font-size: 0.75rem !important;
+
+    font-weight: 600 !important;
+
+    letter-spacing: 0.14em !important;
+
+    text-transform: uppercase;
+
+    color: #2DD4BF !important;
+
+    opacity: 1 !important;
+
+    margin-bottom: 0.65rem;
+}}
+
+
+/* ============================================================
+   HERO TITLE
+   ============================================================ */
+
+.hero-title {{
+    position: relative;
+    z-index: 2;
+
+    font-family: 'Space Grotesk', sans-serif !important;
+
+    font-size: 2.65rem !important;
+
+    font-weight: 700 !important;
+
+    line-height: 1.15 !important;
+
+    color: #F8FAFC !important;
+
+    opacity: 1 !important;
+
+    margin-bottom: 0.65rem;
+
+    text-shadow:
+        0 2px 14px rgba(0, 0, 0, 0.30);
+}}
+
+
+/* ============================================================
+   HERO SUBTITLE
+   ============================================================ */
+
+.hero-subtitle {{
+    position: relative;
+    z-index: 2;
+
+    font-family: 'Inter', sans-serif !important;
+
+    font-size: 1.05rem !important;
+
+    font-weight: 400 !important;
+
+    line-height: 1.65 !important;
+
+    color: #C9D1D9 !important;
+
+    opacity: 1 !important;
+
+    max-width: 720px;
+}}
+
+
+/* ============================================================
+   METRIC CARDS
+   ============================================================ */
+
+div[data-testid="stMetric"] {{
+    background:
+        linear-gradient(
+            145deg,
+            #151E34,
+            #11192C
+        ) !important;
+
+    border:
+        1px solid rgba(45, 212, 191, 0.22) !important;
+
+    border-radius: 15px !important;
+
+    padding: 1rem 1.15rem !important;
+
+    min-height: 105px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.10);
+}}
+
+
+div[data-testid="stMetricLabel"] {{
+    font-family: 'JetBrains Mono', monospace !important;
+
+    color: #AEB8C7 !important;
+
+    font-size: 0.72rem !important;
+
+    font-weight: 500 !important;
+
+    letter-spacing: 0.06em !important;
+
+    text-transform: uppercase;
+
+    opacity: 1 !important;
+}}
+
+
+div[data-testid="stMetricValue"] {{
+    font-family: 'JetBrains Mono', monospace !important;
+
+    color: #2DD4BF !important;
+
+    font-weight: 600 !important;
+
+    opacity: 1 !important;
+}}
+
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+
+section[data-testid="stSidebar"] {{
+    background:
+        linear-gradient(
+            180deg,
+            #0D1526 0%,
+            #090F1C 100%
+        ) !important;
+
+    border-right:
+        1px solid rgba(45, 212, 191, 0.16);
+}}
+
+
+section[data-testid="stSidebar"] h2,
+section[data-testid="stSidebar"] h3 {{
+    font-family: 'Space Grotesk', sans-serif !important;
+
+    color: #F8FAFC !important;
+
+    opacity: 1 !important;
+}}
+
+
+section[data-testid="stSidebar"]
+.stRadio
+label {{
+    color: #C9D1D9 !important;
+
+    opacity: 1 !important;
+
+    font-family: 'Inter', sans-serif !important;
+}}
+
+
+section[data-testid="stSidebar"]
+.stRadio
+[role="radiogroup"]
+label {{
+    padding:
+        0.45rem
+        0.55rem;
+
+    border-radius: 8px;
+}}
+
+
+section[data-testid="stSidebar"]
+.stRadio
+[role="radiogroup"]
+label:hover {{
+    background:
+        rgba(45, 212, 191, 0.08);
+}}
+
+
+/* ============================================================
+   SIDEBAR API CODE
+   ============================================================ */
+
+section[data-testid="stSidebar"]
+.stCodeBlock {{
+    background: #151E31 !important;
+
+    border:
+        1px solid rgba(45, 212, 191, 0.16) !important;
+
+    border-radius: 10px !important;
+}}
+
+
+/* ============================================================
+   SIDEBAR SUCCESS
+   ============================================================ */
+
+section[data-testid="stSidebar"]
+div[data-testid="stAlert"] {{
+    border-radius: 10px !important;
+}}
+
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.stButton > button,
+.stFormSubmitButton > button,
+div[data-testid="stDownloadButton"] > button {{
+    background:
+        linear-gradient(
+            135deg,
+            #2DD4BF 0%,
+            #17A398 100%
+        ) !important;
+
+    color: #06110F !important;
+
+    font-family: 'Inter', sans-serif !important;
+
+    font-weight: 600 !important;
+
+    border: none !important;
+
+    border-radius: 10px !important;
+
+    min-height: 42px;
+
+    transition:
+        transform 150ms ease,
+        box-shadow 150ms ease;
+}}
+
+
+.stButton > button:hover,
+.stFormSubmitButton > button:hover,
+div[data-testid="stDownloadButton"] > button:hover {{
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 24px rgba(45, 212, 191, 0.25);
+}}
+
+
+/* ============================================================
+   FORMS
+   ============================================================ */
+
+div[data-testid="stForm"] {{
+    background:
+        #131B2E !important;
+
+    border:
+        1px solid rgba(45, 212, 191, 0.20) !important;
+
+    border-radius: 16px !important;
+
+    padding: 1.5rem !important;
+}}
+
+
+/* ============================================================
+   INPUTS
+   ============================================================ */
+
+.stTextInput input,
+.stNumberInput input {{
+    background:
+        #1B2438 !important;
+
+    color:
+        #F8FAFC !important;
+
+    border:
+        1px solid rgba(45, 212, 191, 0.20) !important;
+
+    border-radius:
+        8px !important;
+}}
+
+
+div[data-baseweb="select"] > div {{
+    background:
+        #1B2438 !important;
+
+    color:
+        #F8FAFC !important;
+
+    border:
+        1px solid rgba(45, 212, 191, 0.20) !important;
+
+    border-radius:
+        8px !important;
+}}
+
+
+/* ============================================================
+   DATAFRAME
+   ============================================================ */
+
+div[data-testid="stDataFrame"] {{
+    border:
+        1px solid rgba(45, 212, 191, 0.20);
+
+    border-radius:
+        12px;
+
+    overflow:
+        hidden;
+}}
+
+
+/* ============================================================
+   CODE
+   ============================================================ */
+
+.stCodeBlock,
+pre,
+code {{
+    font-family:
+        'JetBrains Mono', monospace !important;
+
+    border-radius:
+        10px !important;
+}}
+
+
+/* ============================================================
+   ALERTS
+   ============================================================ */
+
+div[data-testid="stAlert"] {{
+    border-radius:
+        12px !important;
+}}
+
+
+/* ============================================================
+   DIVIDER
+   ============================================================ */
+
+hr {{
+    border:
+        none !important;
+
+    height:
+        1px !important;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(45, 212, 191, 0.25),
+            transparent
+        ) !important;
+
+    margin:
+        1.75rem 0 !important;
+}}
+
+
+/* ============================================================
+   CAPTION
+   ============================================================ */
+
+.stCaption,
+[data-testid="stCaptionContainer"] {{
+    color:
+        #AEB8C7 !important;
+
+    opacity:
+        1 !important;
+
+    font-family:
+        'JetBrains Mono', monospace !important;
+}}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {{
 
     .hero-title {{
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-        color: var(--white);
+        font-size: 2rem !important;
     }}
 
     .hero-subtitle {{
-        font-size: 1.05rem;
-        color: var(--mist);
-        opacity: 0.85;
-        max-width: 46rem;
+        font-size: 0.95rem !important;
     }}
 
-    /* ---------- Metric cards ---------- */
-
-    .metric-card {{
-        padding: 1.2rem;
-        border-radius: 14px;
-        border: 1px solid var(--border);
-        background: var(--panel);
-        text-align: center;
+    .hero-container {{
+        padding: 2rem 1.5rem;
     }}
+}}
 
-    div[data-testid="stMetric"] {{
-        background: var(--panel);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 1rem 1.1rem;
-        transition: border-color 180ms ease, transform 180ms ease;
-    }}
-
-    div[data-testid="stMetric"]:hover {{
-        border-color: var(--edge);
-        transform: translateY(-2px);
-    }}
-
-    div[data-testid="stMetricLabel"] {{
-        font-family: 'JetBrains Mono', monospace !important;
-        font-size: 0.72rem !important;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--mist) !important;
-        opacity: 0.8;
-    }}
-
-    div[data-testid="stMetricValue"] {{
-        font-family: 'JetBrains Mono', monospace !important;
-        color: var(--edge) !important;
-        font-weight: 600 !important;
-    }}
-
-    /* ---------- Prediction box ---------- */
-
-    .prediction-box {{
-        padding: 1.5rem;
-        border-radius: 16px;
-        border: 1px solid var(--border);
-        background: var(--panel);
-        margin-top: 1rem;
-    }}
-
-    .small-text {{
-        font-size: 0.85rem;
-        opacity: 0.7;
-    }}
-
-    /* ---------- Sidebar ---------- */
-
-    section[data-testid="stSidebar"] {{
-        background: linear-gradient(180deg, #0D1526 0%, #0A101F 100%);
-        border-right: 1px solid var(--border);
-    }}
-
-    section[data-testid="stSidebar"] h2,
-    section[data-testid="stSidebar"] h3 {{
-        font-family: 'Space Grotesk', sans-serif !important;
-        color: var(--white) !important;
-    }}
-
-    section[data-testid="stSidebar"] .stRadio label {{
-        font-family: 'Inter', sans-serif;
-        color: var(--mist);
-    }}
-
-    section[data-testid="stSidebar"] .stRadio [role="radiogroup"] label {{
-        padding: 0.35rem 0.5rem;
-        border-radius: 8px;
-        transition: background 150ms ease;
-    }}
-
-    section[data-testid="stSidebar"] .stRadio [role="radiogroup"] label:hover {{
-        background: var(--panel-light);
-    }}
-
-    section[data-testid="stSidebar"] .stRadio input {{
-        accent-color: var(--edge);
-    }}
-
-    /* ---------- Buttons ---------- */
-
-    .stButton > button,
-    .stFormSubmitButton > button,
-    div[data-testid="stDownloadButton"] > button {{
-        background: linear-gradient(135deg, var(--edge) 0%, #17A398 100%);
-        color: #06110F;
-        font-weight: 600;
-        border: none;
-        border-radius: 10px;
-        padding: 0.6rem 1rem;
-        transition: transform 150ms ease, box-shadow 150ms ease;
-        box-shadow: 0 0 0 rgba(45,212,191,0);
-    }}
-
-    .stButton > button:hover,
-    .stFormSubmitButton > button:hover,
-    div[data-testid="stDownloadButton"] > button:hover {{
-        transform: translateY(-1px);
-        box-shadow: 0 8px 24px rgba(45,212,191,0.28);
-        color: #06110F;
-    }}
-
-    /* ---------- Alerts ---------- */
-
-    div[data-testid="stAlertContentInfo"],
-    .stAlert:has(> div[data-testid="stAlertContentInfo"]) {{
-        background: rgba(45,212,191,0.08) !important;
-    }}
-
-    div[data-testid="stNotification"] {{
-        border-radius: 12px !important;
-        border: 1px solid var(--border) !important;
-        background: var(--panel) !important;
-    }}
-
-    /* ---------- Inputs / Forms ---------- */
-
-    div[data-testid="stForm"] {{
-        background: var(--panel);
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        padding: 1.5rem;
-    }}
-
-    .stTextInput input, .stNumberInput input, .stSelectbox div[data-baseweb="select"] > div {{
-        background: var(--panel-light) !important;
-        color: var(--white) !important;
-        border-radius: 8px !important;
-        border: 1px solid var(--border) !important;
-    }}
-
-    /* ---------- Dataframes / code ---------- */
-
-    div[data-testid="stDataFrame"] {{
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        overflow: hidden;
-        font-family: 'JetBrains Mono', monospace;
-    }}
-
-    .stCodeBlock, pre, code {{
-        font-family: 'JetBrains Mono', monospace !important;
-        border-radius: 10px !important;
-    }}
-
-    /* ---------- Divider ---------- */
-
-    hr {{
-        border: none;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, var(--border), transparent);
-        margin: 1.75rem 0;
-    }}
-
-    /* ---------- Caption / footer ---------- */
-
-    .stCaption, [data-testid="stCaptionContainer"] {{
-        font-family: 'JetBrains Mono', monospace !important;
-        letter-spacing: 0.02em;
-    }}
-
-    </style>
-    """,
+</style>
+""",
     unsafe_allow_html=True,
 )
 
@@ -351,9 +658,7 @@ def api_get(
     endpoint: str,
     timeout: int = 30,
 ):
-    """
-    GET request to FastAPI backend.
-    """
+    """GET request to FastAPI backend."""
 
     url = f"{API_URL}{endpoint}"
 
@@ -373,9 +678,7 @@ def api_post_file(
     filename: str,
     timeout: int = 300,
 ):
-    """
-    POST a CSV file to FastAPI.
-    """
+    """POST a CSV file to FastAPI."""
 
     url = f"{API_URL}{endpoint}"
 
@@ -407,19 +710,11 @@ def get_backend_status():
             timeout=10,
         )
 
-        data = response.json()
-
-        return (
-            True,
-            data,
-        )
+        return True, response.json()
 
     except Exception as exc:
 
-        return (
-            False,
-            str(exc),
-        )
+        return False, str(exc)
 
 
 def get_model_info():
@@ -439,14 +734,12 @@ def get_model_info():
 
 
 # ============================================================
-# PLOTLY THEME HELPER
+# PLOTLY THEME
 # ============================================================
 
-def _apply_plot_theme(figure: go.Figure) -> go.Figure:
-    """
-    Apply the app's visual theme to a Plotly figure without
-    touching any underlying data values.
-    """
+def _apply_plot_theme(
+    figure: go.Figure,
+) -> go.Figure:
 
     figure.update_layout(
         paper_bgcolor="rgba(0,0,0,0)",
@@ -455,7 +748,12 @@ def _apply_plot_theme(figure: go.Figure) -> go.Figure:
             "family": "Inter, sans-serif",
             "color": MIST,
         },
-        margin={"t": 60, "b": 40, "l": 40, "r": 40},
+        margin={
+            "t": 60,
+            "b": 40,
+            "l": 40,
+            "r": 40,
+        },
     )
 
     return figure
@@ -464,26 +762,45 @@ def _apply_plot_theme(figure: go.Figure) -> go.Figure:
 # ============================================================
 # HEADER
 # ============================================================
+#
+# IMPORTANT:
+# We intentionally do NOT use raw HTML <div> elements here.
+# This prevents Streamlit from displaying the markup as a
+# code block.
+#
+# ============================================================
 
 st.markdown(
-    """
-    <div class="hero">
+    '<div class="hero-container">',
+    unsafe_allow_html=True,
+)
 
-        <div class="hero-eyebrow">
-            Heterogeneous Graph Neural Network &middot; Inference Console
-        </div>
+st.markdown(
+    '<div class="hero-eyebrow">'
+    'HETEROGENEOUS GRAPH NEURAL NETWORK'
+    ' &middot; '
+    'INFERENCE CONSOLE'
+    '</div>',
+    unsafe_allow_html=True,
+)
 
-        <div class="hero-title">
-            🏦 Bank Marketing GraphSAGE
-        </div>
+st.markdown(
+    '<div class="hero-title">'
+    '🏦 Bank Marketing GraphSAGE'
+    '</div>',
+    unsafe_allow_html=True,
+)
 
-        <div class="hero-subtitle">
-            Heterogeneous Graph Neural Network for
-            Bank Term Deposit Subscription Prediction
-        </div>
+st.markdown(
+    '<div class="hero-subtitle">'
+    'Heterogeneous Graph Neural Network for '
+    'Bank Term Deposit Subscription Prediction'
+    '</div>',
+    unsafe_allow_html=True,
+)
 
-    </div>
-    """,
+st.markdown(
+    '</div>',
     unsafe_allow_html=True,
 )
 
@@ -562,10 +879,6 @@ if page == "🏠 Dashboard":
         """
     )
 
-    # --------------------------------------------------------
-    # Backend metrics
-    # --------------------------------------------------------
-
     model_info = get_model_info()
 
     col1, col2, col3, col4 = st.columns(4)
@@ -617,10 +930,6 @@ if page == "🏠 Dashboard":
         )
 
     st.divider()
-
-    # --------------------------------------------------------
-    # Architecture
-    # --------------------------------------------------------
 
     st.markdown(
         "## Model Architecture"
@@ -928,11 +1237,14 @@ elif page == "🔮 Single Prediction":
                 if response.status_code != 200:
 
                     try:
+
                         detail = response.json().get(
                             "detail",
                             response.text,
                         )
+
                     except Exception:
+
                         detail = response.text
 
                     st.error(
@@ -997,23 +1309,22 @@ elif page == "🔮 Single Prediction":
                             "50%",
                         )
 
-                    # ----------------------------------------
-                    # Probability gauge
-                    # ----------------------------------------
-
                     figure = go.Figure(
                         go.Indicator(
                             mode="gauge+number",
                             value=probability * 100,
                             number={
                                 "suffix": "%",
-                                "font": {"color": WHITE},
+                                "font": {
+                                    "color": WHITE
+                                },
                             },
                             title={
-                                "text": (
-                                    "Subscription Probability"
-                                ),
-                                "font": {"color": MIST},
+                                "text":
+                                    "Subscription Probability",
+                                "font": {
+                                    "color": MIST
+                                },
                             },
                             gauge={
                                 "axis": {
@@ -1023,15 +1334,35 @@ elif page == "🔮 Single Prediction":
                                     ],
                                     "tickcolor": MIST,
                                 },
-                                "bar": {"color": EDGE},
+                                "bar": {
+                                    "color": EDGE
+                                },
                                 "bgcolor": PANEL_LIGHT,
-                                "bordercolor": "rgba(45,212,191,0.25)",
+                                "bordercolor":
+                                    "rgba(45,212,191,0.25)",
                                 "steps": [
-                                    {"range": [0, 50], "color": "rgba(255,107,107,0.14)"},
-                                    {"range": [50, 100], "color": "rgba(45,212,191,0.14)"},
+                                    {
+                                        "range": [
+                                            0,
+                                            50,
+                                        ],
+                                        "color":
+                                            "rgba(255,107,107,0.14)",
+                                    },
+                                    {
+                                        "range": [
+                                            50,
+                                            100,
+                                        ],
+                                        "color":
+                                            "rgba(45,212,191,0.14)",
+                                    },
                                 ],
                                 "threshold": {
-                                    "line": {"color": NODE, "width": 3},
+                                    "line": {
+                                        "color": NODE,
+                                        "width": 3,
+                                    },
                                     "thickness": 0.85,
                                     "value": 50,
                                 },
@@ -1043,7 +1374,9 @@ elif page == "🔮 Single Prediction":
                         height=350,
                     )
 
-                    figure = _apply_plot_theme(figure)
+                    figure = _apply_plot_theme(
+                        figure
+                    )
 
                     st.plotly_chart(
                         figure,
@@ -1119,20 +1452,12 @@ elif page == "📁 Batch Prediction":
             f"**Filename:** {uploaded_file.name}"
         )
 
-        file_bytes = (
-            uploaded_file.getvalue()
-        )
-
-        # ----------------------------------------------------
-        # Preview
-        # ----------------------------------------------------
+        file_bytes = uploaded_file.getvalue()
 
         try:
 
             preview = pd.read_csv(
-                io.BytesIO(
-                    file_bytes
-                ),
+                io.BytesIO(file_bytes),
                 sep=";",
             )
 
@@ -1168,9 +1493,7 @@ elif page == "📁 Batch Prediction":
             use_container_width=True,
         ):
 
-            progress_placeholder = (
-                st.empty()
-            )
+            progress_placeholder = st.empty()
 
             progress_placeholder.info(
                 "Sending CSV to FastAPI..."
@@ -1221,26 +1544,18 @@ elif page == "📁 Batch Prediction":
                         "Batch prediction completed successfully."
                     )
 
-                    # ----------------------------------------
-                    # Summary
-                    # ----------------------------------------
-
                     total = len(result)
 
                     yes_count = int(
                         (
-                            result[
-                                "prediction"
-                            ]
+                            result["prediction"]
                             == 1
                         ).sum()
                     )
 
                     no_count = int(
                         (
-                            result[
-                                "prediction"
-                            ]
+                            result["prediction"]
                             == 0
                         ).sum()
                     )
@@ -1283,10 +1598,6 @@ elif page == "📁 Batch Prediction":
                             f"{average_probability:.2%}",
                         )
 
-                    # ----------------------------------------
-                    # Results
-                    # ----------------------------------------
-
                     st.markdown(
                         "### Prediction Results"
                     )
@@ -1295,10 +1606,6 @@ elif page == "📁 Batch Prediction":
                         result,
                         use_container_width=True,
                     )
-
-                    # ----------------------------------------
-                    # Distribution chart
-                    # ----------------------------------------
 
                     st.markdown(
                         "### Prediction Distribution"
@@ -1327,8 +1634,13 @@ elif page == "📁 Batch Prediction":
                                     "Customers"
                                 ],
                                 marker={
-                                    "color": [EDGE, SIGNAL],
-                                    "line": {"width": 0},
+                                    "color": [
+                                        EDGE,
+                                        SIGNAL,
+                                    ],
+                                    "line": {
+                                        "width": 0
+                                    },
                                 },
                             )
                         ]
@@ -1338,25 +1650,31 @@ elif page == "📁 Batch Prediction":
                         height=400,
                         xaxis_title="Prediction",
                         yaxis_title="Customers",
-                        xaxis={"gridcolor": "rgba(201,209,217,0.08)"},
-                        yaxis={"gridcolor": "rgba(201,209,217,0.08)"},
+                        xaxis={
+                            "gridcolor":
+                                "rgba(201,209,217,0.08)"
+                        },
+                        yaxis={
+                            "gridcolor":
+                                "rgba(201,209,217,0.08)"
+                        },
                     )
 
-                    figure = _apply_plot_theme(figure)
+                    figure = _apply_plot_theme(
+                        figure
+                    )
 
                     st.plotly_chart(
                         figure,
                         use_container_width=True,
                     )
 
-                    # ----------------------------------------
-                    # Download
-                    # ----------------------------------------
-
                     output_csv = (
-                        result.to_csv(
+                        result
+                        .to_csv(
                             index=False
-                        ).encode("utf-8")
+                        )
+                        .encode("utf-8")
                     )
 
                     st.download_button(
@@ -1434,24 +1752,14 @@ elif page == "ℹ️ Model Information":
                         "Device",
                     ],
                     "Value": [
-                        model_info[
-                            "status"
-                        ],
-                        model_info[
-                            "hidden_dim"
-                        ],
-                        model_info[
-                            "dropout"
-                        ],
-                        model_info[
-                            "learning_rate"
-                        ],
+                        model_info["status"],
+                        model_info["hidden_dim"],
+                        model_info["dropout"],
+                        model_info["learning_rate"],
                         model_info[
                             "classification_threshold"
                         ],
-                        model_info[
-                            "device"
-                        ],
+                        model_info["device"],
                     ],
                 }
             )
