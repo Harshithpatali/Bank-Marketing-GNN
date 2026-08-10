@@ -1,0 +1,23 @@
+{
+  "TP": {
+    "customer_index": 44910,
+    "y_true": 1,
+    "y_pred": 1,
+    "predicted_probability": 0.9866601,
+    "confidence": 0.9866601
+  },
+  "FP": {
+    "customer_index": 40711,
+    "y_true": 0,
+    "y_pred": 1,
+    "predicted_probability": 0.98665035,
+    "confidence": 0.98665035
+  },
+  "FN": {
+    "customer_index": 3324,
+    "y_true": 1,
+    "y_pred": 0,
+    "predicted_probability": 0.02543889,
+    "confidence": 0.97456111
+  }
+}

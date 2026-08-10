@@ -1,0 +1,4 @@
+case,customer_index,y_true,y_pred,predicted_probability,confidence
+TP,44910,1,1,0.9866601,0.9866601
+FP,40711,0,1,0.98665035,0.98665035
+FN,3324,1,0,0.02543889,0.97456111

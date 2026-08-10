@@ -1,0 +1,25 @@
+{
+  "model_status": "FINAL_FROZEN_MODEL",
+  "source_candidate": "artifacts\\models\\graphsage_focused_candidate.pt",
+  "final_model": "artifacts\\models\\hetero_graphsage_final.pt",
+  "validation_metrics": {
+    "accuracy": 0.8124447065762312,
+    "precision": 0.3356258596973865,
+    "recall": 0.6146095717884131,
+    "f1": 0.43416370106761565,
+    "roc_auc": 0.7928735304361872,
+    "pr_auc": 0.45642100332519464,
+    "loss": 0.9680323600769043
+  },
+  "test_metrics": {
+    "accuracy": 0.8171630787378354,
+    "precision": 0.3402430307362402,
+    "recall": 0.6002522068095839,
+    "f1": 0.4343065693430657,
+    "roc_auc": 0.7837999341794551,
+    "pr_auc": 0.43540483137866004
+  },
+  "classification_threshold": 0.5,
+  "test_sample_count": 6782,
+  "further_tuning_after_test": false
+}

@@ -1,0 +1,64 @@
+{
+    "random_seed": 42,
+    "dataset_path": "d:\\Bank-Marketing-GNN\\data\\raw\\bank-full.csv",
+    "dataset_rows": 45211,
+    "dataset_columns": 17,
+    "target_column": "y",
+    "target_mapping": {
+        "no": 0,
+        "yes": 1
+    },
+    "excluded_features": {
+        "duration": "Excluded because it represents completed contact duration and is not available in the intended pre-contact prediction scenario."
+    },
+    "selected_features": [
+        "age",
+        "job",
+        "marital",
+        "education",
+        "default",
+        "balance",
+        "housing",
+        "loan",
+        "contact",
+        "day",
+        "month",
+        "campaign",
+        "pdays",
+        "previous",
+        "poutcome"
+    ],
+    "numerical_features": [
+        "age",
+        "balance",
+        "day",
+        "campaign",
+        "pdays",
+        "previous"
+    ],
+    "categorical_features": [
+        "job",
+        "marital",
+        "education",
+        "default",
+        "housing",
+        "loan",
+        "contact",
+        "month",
+        "poutcome"
+    ],
+    "transformed_feature_count": 50,
+    "train_rows": 31647,
+    "validation_rows": 6782,
+    "test_rows": 6782,
+    "prediction_scenario": "Pre-contact campaign prediction.",
+    "leakage_policy": {
+        "duration": "excluded",
+        "pdays": "retained_pending_documented_availability",
+        "previous": "retained_pending_documented_availability",
+        "poutcome": "retained_pending_documented_availability",
+        "campaign": "retained_pending_documented_availability",
+        "contact": "retained_pending_documented_availability",
+        "month": "retained_pending_documented_availability"
+    }
+}

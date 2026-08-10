@@ -1,0 +1,33 @@
+{
+    "model": "heterogeneous_graphsage",
+    "best_epoch": 128,
+    "best_validation_pr_auc": 0.44839849058717685,
+    "validation_metrics": {
+        "accuracy": 0.7926865231495134,
+        "precision": 0.3125,
+        "recall": 0.6423173803526449,
+        "f1": 0.42044517724649627,
+        "roc_auc": 0.7947186354236601,
+        "pr_auc": 0.44839849058717685,
+        "loss": 0.5413484573364258
+    },
+    "test_metrics": {
+        "accuracy": 0.7965202005308168,
+        "precision": 0.31317632081476765,
+        "recall": 0.6204287515762925,
+        "f1": 0.416243654822335,
+        "roc_auc": 0.7826414420552855,
+        "pr_auc": 0.43130232808743435,
+        "loss": 0.5535832643508911
+    },
+    "training_configuration": {
+        "hidden_channels": 64,
+        "out_channels": 64,
+        "dropout": 0.3,
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001,
+        "max_epochs": 200,
+        "patience": 20,
+        "selection_metric": "validation_pr_auc"
+    }
+}

@@ -1,0 +1,189 @@
+{
+    "random_seed": 42,
+    "graph_type": "heterogeneous_customer_attribute_graph",
+    "node_types": [
+        "customer",
+        "job",
+        "education",
+        "marital",
+        "contact",
+        "month"
+    ],
+    "customer_node": {
+        "feature_dimension": 50,
+        "label_count": 45211,
+        "train_count": 31647,
+        "validation_count": 6782,
+        "test_count": 6782
+    },
+    "category_nodes": {
+        "job": {
+            "node_count": 12,
+            "feature_dimension": 12,
+            "identity_features": true
+        },
+        "education": {
+            "node_count": 4,
+            "feature_dimension": 4,
+            "identity_features": true
+        },
+        "marital": {
+            "node_count": 3,
+            "feature_dimension": 3,
+            "identity_features": true
+        },
+        "contact": {
+            "node_count": 3,
+            "feature_dimension": 3,
+            "identity_features": true
+        },
+        "month": {
+            "node_count": 12,
+            "feature_dimension": 12,
+            "identity_features": true
+        }
+    },
+    "relations": {
+        "job": {
+            "forward": [
+                "customer",
+                "has_job",
+                "job"
+            ],
+            "reverse": [
+                "job",
+                "rev_has_job",
+                "customer"
+            ],
+            "forward_edge_count": 45211,
+            "reverse_edge_count": 45211
+        },
+        "education": {
+            "forward": [
+                "customer",
+                "has_education",
+                "education"
+            ],
+            "reverse": [
+                "education",
+                "rev_has_education",
+                "customer"
+            ],
+            "forward_edge_count": 45211,
+            "reverse_edge_count": 45211
+        },
+        "marital": {
+            "forward": [
+                "customer",
+                "has_marital_status",
+                "marital"
+            ],
+            "reverse": [
+                "marital",
+                "rev_has_marital_status",
+                "customer"
+            ],
+            "forward_edge_count": 45211,
+            "reverse_edge_count": 45211
+        },
+        "contact": {
+            "forward": [
+                "customer",
+                "contacted_via",
+                "contact"
+            ],
+            "reverse": [
+                "contact",
+                "rev_contacted_via",
+                "customer"
+            ],
+            "forward_edge_count": 45211,
+            "reverse_edge_count": 45211
+        },
+        "month": {
+            "forward": [
+                "customer",
+                "campaign_month",
+                "month"
+            ],
+            "reverse": [
+                "month",
+                "rev_campaign_month",
+                "customer"
+            ],
+            "forward_edge_count": 45211,
+            "reverse_edge_count": 45211
+        }
+    },
+    "category_mappings": {
+        "job": {
+            "admin.": 0,
+            "blue-collar": 1,
+            "entrepreneur": 2,
+            "housemaid": 3,
+            "management": 4,
+            "retired": 5,
+            "self-employed": 6,
+            "services": 7,
+            "student": 8,
+            "technician": 9,
+            "unemployed": 10,
+            "unknown": 11
+        },
+        "education": {
+            "primary": 0,
+            "secondary": 1,
+            "tertiary": 2,
+            "unknown": 3
+        },
+        "marital": {
+            "divorced": 0,
+            "married": 1,
+            "single": 2
+        },
+        "contact": {
+            "cellular": 0,
+            "telephone": 1,
+            "unknown": 2
+        },
+        "month": {
+            "apr": 0,
+            "aug": 1,
+            "dec": 2,
+            "feb": 3,
+            "jan": 4,
+            "jul": 5,
+            "jun": 6,
+            "mar": 7,
+            "may": 8,
+            "nov": 9,
+            "oct": 10,
+            "sep": 11
+        }
+    },
+    "selected_customer_features": [
+        "age",
+        "job",
+        "marital",
+        "education",
+        "default",
+        "balance",
+        "housing",
+        "loan",
+        "contact",
+        "day",
+        "month",
+        "campaign",
+        "pdays",
+        "previous",
+        "poutcome"
+    ],
+    "excluded_features": {
+        "duration": "Excluded because it represents completed contact duration and is not available in the intended pre-contact prediction scenario."
+    },
+    "target_column": "y",
+    "target_used_for_edges": false,
+    "graph_design_rationale": "Represent customers and shared categorical marketing/customer attributes as heterogeneous nodes. Category nodes provide shared relational context through typed message passing.",
+    "category_feature_policy": "Category nodes use identity features only and do not aggregate customer feature vectors during graph construction.",
+    "transductive_limitation": "The frozen graph represents the known customer population. A completely new customer requires a defined graph-context strategy."
+}
